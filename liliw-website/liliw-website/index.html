@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liliw Lokal</title>
+  <meta name="description" content="Discover the local food, crafts, and hospitality businesses of Liliw, Laguna.">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="preload" href="assets/images/hero-poster.jpg" as="image">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a class="nav__logo" href="index.html"><img src="assets/images/logo.svg" alt="Liliw Lokal home" width="100" height="45"></a>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a class="nav__link is-active" aria-current="page" href="index.html" data-label="Home">Home</a></li>
+        <li><a class="nav__link" href="about.html" data-label="About">About</a></li>
+        <li><a class="nav__link" href="discover.html" data-label="Discover">Discover</a></li>
+        <li><a class="nav__cta" href="apply.html">Get Featured</a></li>
+      </ul>
+      <form class="search" role="search" autocomplete="off">
+        <button class="search__toggle" type="button" aria-label="Open search" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 20.5 20.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <input class="search__input" type="search" placeholder="Search businesses..." aria-label="Search businesses and pages" tabindex="-1">
+        <ul class="search__results" role="listbox" hidden></ul>
+      </form>
+      <button class="nav__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" aria-label="Liliw Lokal">
+      <div class="hero__media" data-parallax="0.35">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/images/hero-poster.jpg" aria-hidden="true">
+          <source src="assets/videos/home-hero-mobile.mp4" type="video/mp4" media="(max-width: 900px)">
+          <source src="assets/videos/home-hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero__content">
+        <h1 class="visually-hidden">Liliw Lokal</h1>
+        <img class="hero__logo" src="assets/images/hero-logo.svg" alt="Meet the local MSMEs that keep Liliw’s industries growing, creating, and thriving.">
+        <a class="btn-glass" href="#origin">Learn More <svg class="ico-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </section>
+
+    <section class="origin" id="origin">
+      <div class="origin__inner">
+        <div data-reveal>
+          <p class="eyebrow">Origin</p>
+          <h2 class="display">More than <br>a destination</h2>
+        </div>
+        <p class="origin__text" data-reveal>Founded in 1571, Liliw is known for its cultural heritage, traditional craftsmanship, and scenic surroundings near Mount Banahaw. Today, its local economy continues to thrive through the livelihoods of its people, including small shops, eateries, and service providers. Through Liliw Lokal, local MSMEs are given greater visibility to showcase their products, services, and stories, encouraging more people to discover and support the community.</p>
+      </div>
+    </section>
+
+    <section class="look">
+      <h2 class="display look__title" data-reveal>A look into Lokal</h2>
+      <p class="look__sub" data-reveal>Discover the industries and businesses that <br>shape Liliw’s local identity.</p>
+      <div class="look__grid">
+        <article class="look-card" data-reveal>
+          <a class="look-card__img" href="discover.html?cat=food" tabindex="-1" aria-hidden="true"><img src="assets/images/home/card-food.jpg" alt="" loading="lazy"></a>
+          <div class="look-card__body">
+            <h3>Food</h3>
+            <p>Discover local flavors and satisfying dishes made with passion by Liliw’s food businesses.</p>
+            <a class="pill" href="discover.html?cat=food" aria-label="Discover Food">Discover <svg class="ico-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </article>
+        <article class="look-card" data-reveal>
+          <a class="look-card__img" href="discover.html?cat=crafts" tabindex="-1" aria-hidden="true"><img src="assets/images/home/card-crafts.jpg" alt="" loading="lazy"></a>
+          <div class="look-card__body">
+            <h3>Crafts</h3>
+            <p>Explore thoughtfully crafted local products that showcase Liliw’s craftsmanship.</p>
+            <a class="pill" href="discover.html?cat=crafts" aria-label="Discover Crafts">Discover <svg class="ico-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </article>
+        <article class="look-card" data-reveal>
+          <a class="look-card__img" href="discover.html?cat=hospitality" tabindex="-1" aria-hidden="true"><img src="assets/images/home/card-hospitality.jpg" alt="" loading="lazy"></a>
+          <div class="look-card__body">
+            <h3>Hospitality</h3>
+            <p>Find welcoming stays and relaxing getaways that make your visit to Liliw more memorable.</p>
+            <a class="pill" href="discover.html?cat=hospitality" aria-label="Discover Hospitality">Discover <svg class="ico-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="feature-banner">
+      <div class="feature-banner__bg" data-parallax="0.25"><img src="assets/images/home/get-featured-bg.jpg" alt="" loading="lazy"></div>
+      <div class="feature-banner__content" data-reveal>
+        <h2 class="display">Get featured</h2>
+        <p>Get your business discovered and showcased on our platform. Apply now <br>to be part of Liliw’s growing local business community.</p>
+        <a class="btn btn--green btn--apply" href="apply.html">Apply <svg class="ico-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </section>
+    <section class="touch" id="get-in-touch">
+      <div class="touch__inner">
+        <div data-reveal>
+          <h2 class="display touch__title">Get in touch</h2>
+          <p class="touch__intro">For inquiries and assistance, feel free <br>to reach out to us.</p>
+        </div>
+        <form class="contact-form" id="contact-form" novalidate data-reveal>
+          <input type="hidden" name="formType" value="contact">
+          <div class="line-field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="line-field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="line-field"><label for="c-message">Message</label><textarea id="c-message" name="message" rows="1" required></textarea></div>
+          <button class="btn btn--green btn--send" type="submit">Send</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer__top">
+      <a class="footer__logo" href="index.html"><img src="assets/images/logo.svg" alt="Liliw Lokal" width="190" height="86"></a>
+      <div class="footer__cols">
+        <div><h2>Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="discover.html">Discover</a></li><li><a href="apply.html">Get Featured</a></li></ul></div>
+        <div><h2>Emergency Hotlines</h2><ul class="footer__hotlines"><li><b>MDRRM Office</b><a href="tel:0495033621">(049) 5033-621</a></li><li><b>PNP</b><a href="tel:0495831114">(049) 5831-114</a></li><li><b>BFP Station</b><a href="tel:0495031756">(049) 5031-756</a></li></ul></div>
+        <div><h2>Republic of the Philippines</h2><p><a href="https://www.google.com/maps/search/?api=1&amp;query=Liliw%2C+Laguna" target="_blank" rel="noopener">Liliw, Laguna</a></p></div>
+        <div><h2>Follow us</h2><div class="footer__social">
+          <a href="https://www.facebook.com/share/1HSTS8QGon/" target="_blank" rel="noopener" aria-label="Liliw Tourism on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12a12 12 0 1 0-13.88 11.85v-8.38H7.08V12h3.04V9.36c0-3 1.79-4.67 4.53-4.67 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.95.93-1.95 1.87V12h3.32l-.53 3.47h-2.79v8.38A12 12 0 0 0 24 12z"/></svg></a>
+          <a href="https://www.instagram.com/liliw.turismo" target="_blank" rel="noopener" aria-label="Liliw Tourism on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="currentColor"/><rect x="6.3" y="6.3" width="11.4" height="11.4" rx="3.3" fill="none" stroke="var(--ig-fg,#fff)" stroke-width="1.6"/><circle cx="12" cy="12" r="2.7" fill="none" stroke="var(--ig-fg,#fff)" stroke-width="1.6"/><circle cx="15.3" cy="8.7" r=".85" fill="var(--ig-fg,#fff)"/></svg></a>
+        </div></div>
+      </div>
+    </div>
+    <p class="footer__copy">© 2026 Liliw Lokal. All rights reserved.</p>
+  </footer>
+  <button class="back-to-top" type="button" aria-label="Back to top">
+        <svg viewBox="0 0 40 34" aria-hidden="true"><path d="M8 17 20 5l12 12M8 29l12-12 12 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Back to Top</span>
+      </button>
+  <script src="js/search-index.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/forms.js"></script>
+</body>
+</html>
