@@ -114,11 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---- 5. Back to top ---- */
   document.querySelectorAll(".back-to-top").forEach((b) => {
     b.addEventListener("click", () => scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
-    // show it only once you reach the bottom of the page
+    // stays on screen once you have scrolled past the first part of the page
     const check = () => {
-      const doc = document.documentElement;
-      const atBottom = innerHeight + scrollY >= doc.scrollHeight - 140;
-      b.classList.toggle("is-visible", atBottom && doc.scrollHeight > innerHeight + 200);
+      b.classList.toggle("is-visible", scrollY > Math.min(500, innerHeight * 0.6));
     };
     addEventListener("scroll", check, { passive: true });
     addEventListener("resize", check);
@@ -162,10 +160,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (["food", "crafts", "hospitality"].includes(start)) apply(start);
   }
 
-  /* ---- 9. Business page: back button goes to the previous page when it was on this site ---- */
-  document.querySelectorAll("[data-back-link]").forEach((a) => a.addEventListener("click", (e) => {
-    if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); }
-  }));
+  /* ---- 9. Pressed state: buttons turn green the moment they are clicked or tapped (phones too) ---- */
+  const pressable = ".pill, .btn--green, .nav__cta, .chip, .tabs__btn, .btn-back, .btn-next, .biz-card";
+  addEventListener("touchstart", () => {}, { passive: true }); // lets phones show :active
+  addEventListener("pointerdown", (e) => {
+    const el = e.target.closest(pressable);
+    if (!el) return;
+    el.classList.add("is-pressed");
+    const release = () => setTimeout(() => el.classList.remove("is-pressed"), 220);
+    el.addEventListener("pointerup", release, { once: true });
+    el.addEventListener("pointercancel", release, { once: true });
+    el.addEventListener("pointerleave", release, { once: true });
+  });
+  // coming back with the browser's Back button: clear any leftover pressed look
+  addEventListener("pageshow", () => document.querySelectorAll(".is-pressed").forEach((el) => el.classList.remove("is-pressed")));
 
   /* ---- 10. Campaign gallery: filter tabs ---- */
   const tabs = document.querySelectorAll(".tabs__btn");
@@ -179,7 +187,49 @@ document.addEventListener("DOMContentLoaded", () => {
         tile.hidden = !show;
         if (show && !reduceMotion) { tile.classList.remove("is-in"); tile.style.transitionDelay = (k % 6) * 60 + "ms"; requestAnimationFrame(() => requestAnimationFrame(() => tile.classList.add("is-in"))); }
       });
+      justifyGallery();
     }));
+  }
+
+  /* ---- 10b. Campaign gallery: line every row up edge to edge.
+     Tiles in a row share one height and together fill the full width, on any screen size. ---- */
+  function justifyGallery() {
+    document.querySelectorAll(".gallery").forEach((gal) => {
+      const W = gal.clientWidth;
+      if (!W) return;
+      const gap = parseFloat(getComputedStyle(gal).columnGap) || 0;
+      const target = innerWidth <= 600 ? 200 : innerWidth <= 900 ? 260 : 340; // ideal row height
+      const tiles = [...gal.querySelectorAll(".g-tile")].filter((t) => !t.hidden);
+      const rows = [];
+      let row = [];
+      const heightOf = (r) => (W - gap * (r.length - 1)) / r.reduce((n, x) => n + parseFloat(x.style.getPropertyValue("--n")), 0);
+      tiles.forEach((t) => {
+        const before = row.length ? heightOf(row) : Infinity;
+        row.push(t);
+        const after = heightOf(row);
+        if (after <= target) {
+          // end the row where its height comes closest to the ideal height
+          if (row.length > 1 && Math.abs(before - target) < Math.abs(after - target)) { row.pop(); rows.push(row); row = [t]; }
+          else { rows.push(row); row = []; }
+        }
+      });
+      if (row.length) {
+        const sum = row.reduce((n, x) => n + parseFloat(x.style.getPropertyValue("--n")), 0);
+        const h = (W - gap * (row.length - 1)) / sum;
+        // a short last row would come out too tall: join it to the row above instead
+        if (h > target * 1.5 && rows.length) rows[rows.length - 1].push(...row); else rows.push(row);
+      }
+      rows.forEach((r) => {
+        const sum = r.reduce((n, x) => n + parseFloat(x.style.getPropertyValue("--n")), 0);
+        const h = (W - gap * (r.length - 1)) / sum;
+        r.forEach((t) => { t.style.flex = "0 0 auto"; t.style.width = (h * parseFloat(t.style.getPropertyValue("--n"))) - 0.01 + "px"; });
+      });
+    });
+  }
+  if (document.querySelector(".gallery")) {
+    justifyGallery();
+    let rt;
+    addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(justifyGallery, 80); });
   }
 
   /* ---- 11. Lightbox: click a photo to see it full screen; videos play only when clicked ---- */

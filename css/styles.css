@@ -672,3 +672,46 @@ body.no-scroll { overflow: hidden; }
 .lightbox__stage img { border-radius: 0; background: transparent; }
 .biz-card__btn { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(0,0,0,.12); border-width: 1px; }
 .biz-card:hover .biz-card__btn, .biz-card:focus-visible .biz-card__btn { background: rgba(0,0,0,.12); }
+
+/* =========================================================
+   23. REVISION ROUND (Nov 14)
+   ========================================================= */
+/* Nav: logo and search sit closer to the screen edges */
+.nav { padding: 0 40px; }
+@media (max-width: 900px) { .nav { padding: 0 12px 0 16px; } }
+
+/* No grey/blue flash when tapping on phones; our own green state shows instead */
+a, button { -webkit-tap-highlight-color: transparent; }
+
+/* Pressed = green, on desktop clicks and phone taps (.is-pressed is added by main.js) */
+.pill.is-pressed, .btn--green.is-pressed, .nav__cta.is-pressed, .chip.is-pressed, .tabs__btn.is-pressed, .btn-back.is-pressed, .btn-next.is-pressed {
+  background: var(--green) !important; border-color: var(--green) !important; color: var(--navy) !important;
+}
+/* See Details: turns green when the card is clicked, tapped, or selected with the keyboard */
+.biz-card:active .biz-card__btn, .biz-card.is-pressed .biz-card__btn {
+  background: var(--green) !important; border-color: var(--green) !important; color: var(--navy) !important;
+}
+.biz-card:focus { outline: none; }
+.biz-card:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+.biz-card:focus-visible .biz-card__btn { border-color: var(--green); }
+
+/* Business banners: still, no movement on scroll or tap */
+.biz-hero__bg { inset: 0; transform: none !important; will-change: auto; }
+.biz-hero__bg img { pointer-events: none; -webkit-user-drag: none; user-select: none; }
+
+/* Campaign gallery: every row lines up on the top and bottom edges.
+   Each tile's width follows its shape (--n = width / height), so tiles in a row share one height. */
+.gallery { --row: 330px; display: flex; flex-wrap: wrap; align-items: stretch; gap: var(--gap); }
+.gallery::after { content: ""; flex: 1000 1 0; }  /* keeps a short last row from stretching */
+.g-tile { width: auto; flex: calc(var(--n) * 100) 1 calc(var(--n) * var(--row)); min-width: 0; }
+.g-tile__btn img { width: 100%; height: auto; aspect-ratio: var(--ar); object-fit: cover; display: block; }
+@media (max-width: 900px) { .gallery { --row: 240px; } }
+@media (max-width: 600px) { .gallery { --row: 150px; } .g-tile { width: auto; } }
+
+/* GIF logo tiles: play on their own, rounded like the other tiles */
+.g-tile--gif .g-tile__btn { cursor: zoom-in; }
+.lightbox__stage img[src$=".gif"] { border-radius: 18px; }
+
+/* See Details: clear with a white outline, green when pressed */
+.biz-card__btn, .biz-card:hover .biz-card__btn, .biz-card:focus-visible .biz-card__btn { background: transparent; border-color: #fff; color: #fff; }
+.biz-card .pill.biz-card__btn:hover:not(:active):not(.is-active) { background: transparent; border-color: #fff; color: #fff; }
