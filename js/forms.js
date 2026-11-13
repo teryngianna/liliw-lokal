@@ -195,7 +195,7 @@ if (applyForm) {
   bar.before(sentinel);
   new IntersectionObserver(([entry]) => {
     bar.classList.toggle("is-stuck", !entry.isIntersecting && entry.boundingClientRect.top < 0);
-  }, { rootMargin: "-140px 0px 0px 0px" }).observe(sentinel);
+  }, { rootMargin: `-${(parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 82) + 2}px 0px 0px 0px` }).observe(sentinel);
 
   // Clicking a step circle scrolls to that section
   document.querySelectorAll(".stepper [data-goto]").forEach((btn) =>
@@ -268,6 +268,13 @@ if (applyForm) {
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit";
     }
+  });
+
+  // "Back" button (design): return to the previous page, or Home if there isn't one
+  const backBtn = applyForm.querySelector("[data-back]");
+  if (backBtn) backBtn.addEventListener("click", () => {
+    if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) history.back();
+    else location.href = "index.html";
   });
 
   updateProgress();
