@@ -116,7 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
     b.addEventListener("click", () => scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
     // stays on screen once you have scrolled past the first part of the page
     const check = () => {
-      b.classList.toggle("is-visible", scrollY > Math.min(500, innerHeight * 0.6));
+      // step aside while a bottom-right button (Submit, Send) sits in the same corner of the screen
+      const blocked = [...document.querySelectorAll(".step-actions, .btn--send")].some((el) => {
+        const r = el.getBoundingClientRect();
+        return r.bottom > innerHeight - 110 && r.top < innerHeight;
+      });
+      b.classList.toggle("is-visible", scrollY > Math.min(500, innerHeight * 0.6) && !blocked);
     };
     addEventListener("scroll", check, { passive: true });
     addEventListener("resize", check);
@@ -160,20 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (["food", "crafts", "hospitality"].includes(start)) apply(start);
   }
 
-  /* ---- 9. Pressed state: buttons turn green the moment they are clicked or tapped (phones too) ---- */
-  const pressable = ".pill, .btn--green, .nav__cta, .chip, .tabs__btn, .btn-back, .btn-next, .biz-card";
-  addEventListener("touchstart", () => {}, { passive: true }); // lets phones show :active
-  addEventListener("pointerdown", (e) => {
-    const el = e.target.closest(pressable);
-    if (!el) return;
-    el.classList.add("is-pressed");
-    const release = () => setTimeout(() => el.classList.remove("is-pressed"), 220);
-    el.addEventListener("pointerup", release, { once: true });
-    el.addEventListener("pointercancel", release, { once: true });
-    el.addEventListener("pointerleave", release, { once: true });
-  });
-  // coming back with the browser's Back button: clear any leftover pressed look
-  addEventListener("pageshow", () => document.querySelectorAll(".is-pressed").forEach((el) => el.classList.remove("is-pressed")));
 
   /* ---- 10. Campaign gallery: filter tabs ---- */
   const tabs = document.querySelectorAll(".tabs__btn");
@@ -188,7 +179,32 @@ document.addEventListener("DOMContentLoaded", () => {
         if (show && !reduceMotion) { tile.classList.remove("is-in"); tile.style.transitionDelay = (k % 6) * 60 + "ms"; requestAnimationFrame(() => requestAnimationFrame(() => tile.classList.add("is-in"))); }
       });
       justifyGallery();
+      slideTo(t);
     }));
+
+    // Sliding fill: follows the mouse over the tabs, then returns to the selected one
+    const bar = document.querySelector(".tabs");
+    const ind = document.createElement("span");
+    ind.className = "tabs__ind";
+    ind.setAttribute("aria-hidden", "true");
+    bar.prepend(ind);
+    function slideTo(t) {
+      ind.style.left = t.offsetLeft + "px";
+      ind.style.width = t.offsetWidth + "px";
+      tabs.forEach((x) => x.classList.toggle("is-lit", x === t));
+    }
+    const selected = () => [...tabs].find((x) => x.classList.contains("is-active")) || tabs[0];
+    ind.style.transition = "none";
+    slideTo(selected());
+    requestAnimationFrame(() => { ind.style.transition = ""; });
+    bar.classList.add("has-ind");
+    tabs.forEach((t) => {
+      t.addEventListener("mouseenter", () => slideTo(t));
+      t.addEventListener("focus", () => slideTo(t));
+    });
+    bar.addEventListener("mouseleave", () => slideTo(selected()));
+    bar.addEventListener("focusout", (e) => { if (!bar.contains(e.relatedTarget)) slideTo(selected()); });
+    addEventListener("resize", () => { ind.style.transition = "none"; slideTo(selected()); requestAnimationFrame(() => { ind.style.transition = ""; }); });
   }
 
   /* ---- 10b. Campaign gallery: line every row up edge to edge.

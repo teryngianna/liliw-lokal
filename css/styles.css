@@ -56,8 +56,6 @@ button { font: inherit; cursor: pointer; color: inherit; }
   font-size: 18px; font-weight: 500; text-decoration: none; white-space: nowrap;
   transition: background-color .25s, border-color .25s, color .25s, transform .25s;
 }
-.pill:hover, .pill:active, .pill.is-active { background: var(--green); border-color: var(--green); color: var(--navy); }
-.pill:active { transform: scale(.97); }
 .pill--lg { height: 50px; padding: 0 34px; font-size: 20px; }
 .pill--sm { height: 30px; padding: 0 14px; font-size: 13px; }
 .pill--light { border-color: rgba(255,255,255,.85); color: #fff; }
@@ -68,8 +66,6 @@ button { font: inherit; cursor: pointer; color: inherit; }
   transition: background-color .25s, transform .25s, box-shadow .25s;
 }
 .btn--green { background: var(--green); color: var(--navy); }
-.btn--green:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(42,225,115,.35); }
-.btn--green:active { transform: scale(.97); }
 
 /* Learn More (glass button on the hero): rises and lightens on hover */
 .btn-glass {
@@ -79,8 +75,6 @@ button { font: inherit; cursor: pointer; color: inherit; }
   color: #fff; font-size: 22px; font-weight: 500; text-decoration: none;
   transition: transform .35s var(--ease), background-color .35s, box-shadow .35s;
 }
-.btn-glass:hover, .btn-glass:focus-visible { transform: translateY(-6px); background: rgba(255,255,255,.34); box-shadow: 0 12px 28px rgba(0,0,0,.25); }
-.btn-glass:active { background: var(--green); border-color: var(--green); color: var(--navy); }
 
 /* ---------- 5. NAVIGATION ---------- */
 .site-header { position: sticky; top: 0; z-index: 100; background: var(--cream); }
@@ -91,15 +85,12 @@ button { font: inherit; cursor: pointer; color: inherit; }
 /* bold "ghost" copy keeps the width steady so links don't jump when they turn bold */
 .nav__link { display: inline-grid; }
 .nav__link::after { content: attr(data-label); font-weight: 700; visibility: hidden; height: 0; }
-.nav__link:hover { color: #3B4561; }
 .nav__link.is-active { font-weight: 700; }
 .nav__cta {
   display: inline-flex; align-items: center; height: 37px; padding: 0 20px; border-radius: 999px;
   border: 1.5px solid var(--navy); font-size: 16px; font-weight: 600; text-decoration: none; color: var(--navy);
   transition: background-color .25s, border-color .25s;
 }
-.nav__cta:hover { background: rgba(42,225,115,.18); }
-.nav__cta:active, .nav__cta.is-active { background: var(--green); border-color: var(--green); }
 
 /* Search: an icon that expands into a search box when clicked */
 .search { position: relative; margin-left: auto; display: flex; align-items: center; justify-content: flex-end; height: 46px; width: 46px;
@@ -180,7 +171,6 @@ button { font: inherit; cursor: pointer; color: inherit; }
 .back-to-top { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 0 auto; padding: 0 0 36px; background: none; border: 0; color: #fff; font-size: 29px; font-weight: 500;
   transition: transform .3s var(--ease), color .2s; }
 .back-to-top svg { width: 46px; height: 40px; transition: transform .3s var(--ease); }
-.back-to-top:hover { color: var(--green); }
 .back-to-top:hover svg { transform: translateY(-6px); }
 .touch .back-to-top { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); }
 
@@ -210,9 +200,7 @@ button { font: inherit; cursor: pointer; color: inherit; }
 .chips__label { font-size: 21px; margin-right: 6px; }
 .chip { height: 58px; min-width: 129px; padding: 0 30px; border-radius: 999px; border: 1.5px solid var(--navy); background: transparent; font-size: 21px;
   transition: background-color .25s, color .25s, border-color .25s; }
-.chip:hover { background: rgba(42,225,115,.2); }
 .chip.is-active { background: var(--navy); color: #fff; }
-.chip:active { background: var(--green); border-color: var(--green); color: var(--navy); }
 .discover__grid { margin-top: 88px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 21px; }
 .discover__empty { margin-top: 40px; color: var(--gray); }
 
@@ -225,7 +213,6 @@ button { font: inherit; cursor: pointer; color: inherit; }
 .biz-card__btn { position: absolute; z-index: 1; right: 16px; bottom: 16px; }
 .biz-card:hover, .biz-card:focus-visible { transform: translateY(-10px); box-shadow: 0 18px 30px rgba(15,23,43,.25); }
 .biz-card:hover img { transform: scale(1.04); }
-.biz-card:hover .biz-card__btn, .biz-card:focus-visible .biz-card__btn { background: var(--green); border-color: var(--green); color: var(--navy); box-shadow: 0 0 16px rgba(42,225,115,.6); }
 .biz-card[hidden] { display: none; }
 
 /* ---------- 13. ABOUT PAGE ---------- */
@@ -328,10 +315,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .step-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 64px; }
 .btn-back, .btn-next { width: 190px; height: 58px; border-radius: 10px; border: 0; font-size: 20px; transition: background-color .25s, transform .2s; }
 .btn-back { background: #E6E6E6; color: var(--navy); }
-.btn-back:hover { background: #D6D6D6; }
 .btn-next { background: var(--navy); color: #fff; font-weight: 700; margin-left: auto; }
-.btn-next:hover { background: #1F2A47; }
-.btn-back:active, .btn-next:active { background: var(--green); color: var(--navy); }
 .btn-next[disabled] { opacity: .6; cursor: wait; }
 .form-note { margin-top: 18px; text-align: right; font-size: 15px; color: #E5484D; min-height: 18px; }
 
@@ -344,7 +328,6 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 @keyframes sheet-pop { from { opacity: 0; transform: translateY(80px) scale(.96); } to { opacity: 1; transform: none; } }
 .submitted__close { position: absolute; top: 76px; right: 82px; width: 44px; height: 44px; display: grid; place-items: center; color: #3A3A3A; }
 .submitted__close svg { width: 36px; height: 36px; }
-.submitted__close:hover { color: var(--green-dark); }
 .submitted__icon { width: 366px; height: 366px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; }
 .submitted__icon svg { width: 136px; height: auto; }
 .submitted h1 { margin-top: 92px; font-family: var(--font-body); font-size: 60px; font-weight: 700; letter-spacing: -1px; }
@@ -389,9 +372,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .gallery-sec .display { font-size: 56px; color: #000; }
 .tabs { display: flex; width: 623px; height: 43px; border: 1.5px solid var(--navy); border-radius: 999px; overflow: hidden; margin-bottom: 4px; }
 .tabs__btn { flex: 1; border: 0; background: transparent; font-size: 20px; border-radius: 999px; transition: background-color .25s, color .25s; }
-.tabs__btn:hover { background: rgba(42,225,115,.2); }
 .tabs__btn.is-active { background: #000; color: #fff; }
-.tabs__btn:active { background: var(--green); color: var(--navy); }
 .gallery { --gap: 13px; margin-top: 70px; display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--gap); }
 .g-tile { width: calc(var(--r) * (100% - 2 * var(--gap)) / 3 + (var(--r) - 1) * var(--gap)); }
 .g-tile[hidden] { display: none; }
@@ -402,7 +383,6 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .g-tile[data-type="video"] .g-tile__btn { cursor: pointer; }
 .g-tile__play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: rgba(15,23,43,.65); color: #fff; display: grid; place-items: center; transition: background-color .25s, transform .25s; }
 .g-tile__play svg { width: 30px; height: 30px; margin-left: 3px; }
-.g-tile__btn:hover .g-tile__play { background: var(--green); color: var(--navy); transform: scale(1.08); }
 /* gallery photos rise into place as you scroll */
 .js .g-tile { transition: opacity .7s ease, transform .7s var(--ease); }
 .js .g-tile:not(.is-in) { opacity: 0; transform: translateY(50px); }
@@ -420,7 +400,6 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
 .lightbox__stage img, .lightbox__stage video { max-width: min(1200px, 100%); max-height: calc(100vh - 120px); border-radius: 8px; }
 .lightbox__msg { color: #fff; text-align: center; font-size: 20px; line-height: 1.5; max-width: 420px; }
 .lightbox__btn { position: absolute; width: 52px; height: 52px; border-radius: 50%; border: 0; background: rgba(255,255,255,.14); color: #fff; display: grid; place-items: center; transition: background-color .2s; }
-.lightbox__btn:hover { background: var(--green); color: var(--navy); }
 .lightbox__btn svg { width: 26px; height: 26px; }
 .lightbox__close { top: 20px; right: 24px; }
 .lightbox__prev { left: 20px; top: 50%; margin-top: -26px; }
@@ -615,27 +594,6 @@ body.no-scroll { overflow: hidden; }
    20. BUTTON HOVER: buttons rise, no glow or color change.
    They still turn green at the moment they are clicked.
    ========================================================= */
-.pill, .btn--green, .nav__cta, .chip, .tabs__btn, .btn-back, .btn-next, .biz-card__btn {
-  transition: transform .25s var(--ease), background-color .2s, border-color .2s, color .2s;
-}
-.pill:hover, .btn--green:hover, .nav__cta:hover, .chip:hover, .btn-back:hover, .btn-next:hover {
-  transform: translateY(-3px); box-shadow: none;
-}
-.pill:hover:not(:active):not(.is-active) { background: transparent; border-color: var(--navy); color: var(--navy); }
-.pill--light:hover:not(:active) { background: transparent; border-color: rgba(255,255,255,.85); color: #fff; }
-.btn--green:hover { background: var(--green); }
-.nav__cta:hover:not(.is-active) { background: transparent; }
-.chip:hover:not(.is-active) { background: transparent; }
-.tabs__btn:hover:not(.is-active) { background: transparent; text-decoration: underline; text-underline-offset: 4px; }
-.btn-back:hover { background: #E6E6E6; }
-.btn-next:hover { background: var(--navy); }
-/* clicked = green */
-.pill:active, .btn--green:active, .nav__cta:active, .chip:active, .tabs__btn:active, .btn-back:active, .btn-next:active {
-  background: var(--green) !important; border-color: var(--green) !important; color: var(--navy) !important; transform: translateY(-1px);
-}
-/* See Details on the business cards: rises with the card, no glow */
-.biz-card:hover .biz-card__btn, .biz-card:focus-visible .biz-card__btn { background: transparent; border-color: rgba(255,255,255,.85); color: #fff; box-shadow: none; transform: translateY(-3px); }
-.biz-card:active .biz-card__btn { background: var(--green); border-color: var(--green); color: var(--navy); }
 
 /* =========================================================
    21. BACK TO TOP: pops up when you reach the bottom of the page
@@ -651,9 +609,6 @@ body.no-scroll { overflow: hidden; }
 }
 .back-to-top svg { width: 22px; height: 19px; }
 .back-to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
-.back-to-top.is-visible:hover { transform: translateY(-3px); color: #fff; }
-.back-to-top:hover svg { transform: translateY(-2px); }
-.back-to-top:active { background: var(--green); color: var(--navy); }
 @media (max-width: 900px) {
   .back-to-top { right: 14px; bottom: 14px; font-size: 15px; padding: 10px 18px 10px 14px; }
   .back-to-top svg { width: 18px; height: 16px; }
@@ -671,7 +626,6 @@ body.no-scroll { overflow: hidden; }
 .g-tile__btn img { border-radius: 18px; }
 .lightbox__stage img { border-radius: 0; background: transparent; }
 .biz-card__btn { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(0,0,0,.12); border-width: 1px; }
-.biz-card:hover .biz-card__btn, .biz-card:focus-visible .biz-card__btn { background: rgba(0,0,0,.12); }
 
 /* =========================================================
    23. REVISION ROUND (Nov 14)
@@ -683,17 +637,6 @@ body.no-scroll { overflow: hidden; }
 /* No grey/blue flash when tapping on phones; our own green state shows instead */
 a, button { -webkit-tap-highlight-color: transparent; }
 
-/* Pressed = green, on desktop clicks and phone taps (.is-pressed is added by main.js) */
-.pill.is-pressed, .btn--green.is-pressed, .nav__cta.is-pressed, .chip.is-pressed, .tabs__btn.is-pressed, .btn-back.is-pressed, .btn-next.is-pressed {
-  background: var(--green) !important; border-color: var(--green) !important; color: var(--navy) !important;
-}
-/* See Details: turns green when the card is clicked, tapped, or selected with the keyboard */
-.biz-card:active .biz-card__btn, .biz-card.is-pressed .biz-card__btn {
-  background: var(--green) !important; border-color: var(--green) !important; color: var(--navy) !important;
-}
-.biz-card:focus { outline: none; }
-.biz-card:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
-.biz-card:focus-visible .biz-card__btn { border-color: var(--green); }
 
 /* Business banners: still, no movement on scroll or tap */
 .biz-hero__bg { inset: 0; transform: none !important; will-change: auto; }
@@ -712,6 +655,175 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .g-tile--gif .g-tile__btn { cursor: zoom-in; }
 .lightbox__stage img[src$=".gif"] { border-radius: 18px; }
 
-/* See Details: clear with a white outline, green when pressed */
-.biz-card__btn, .biz-card:hover .biz-card__btn, .biz-card:focus-visible .biz-card__btn { background: transparent; border-color: #fff; color: #fff; }
-.biz-card .pill.biz-card__btn:hover:not(:active):not(.is-active) { background: transparent; border-color: #fff; color: #fff; }
+
+
+
+/* =========================================================
+   24. BUTTON SYSTEM (adviser revision, Nov 16)
+   One look for every button on the site:
+   - Primary (green): the main action. Apply, Get Featured, Send, Submit.
+   - Outline: links to another page. Discover, Learn More, See Details, Follow links.
+   - Grey: going back in the form.
+   - Category: grey outline, navy outline on hover, navy fill when selected.
+   Hover = the button rises a little. No color change on hover or click.
+   ========================================================= */
+:root { --btn-h: 44px; --btn-px: 28px; --btn-fs: 17px; --btn-rise: translateY(-3px); }
+@media (max-width: 600px) { :root { --btn-h: 42px; --btn-px: 24px; --btn-fs: 16px; } }
+
+.btn, .pill, .btn-glass, .nav__cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: var(--btn-h); min-width: 127px; padding: 0 var(--btn-px); border-radius: 999px;
+  font-family: var(--font-body); font-size: var(--btn-fs); font-weight: 500; line-height: 1;
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  box-shadow: none; transform: none;
+  transition: transform .25s var(--ease);
+}
+.btn:hover, .pill:hover, .btn-glass:hover, .nav__cta:hover,
+.btn:focus-visible, .pill:focus-visible, .btn-glass:focus-visible, .nav__cta:focus-visible { transform: var(--btn-rise); }
+.btn:active, .pill:active, .btn-glass:active, .nav__cta:active { transform: var(--btn-rise); }
+
+/* Primary */
+.btn--green, .nav__cta, .nav__cta.is-active { background: var(--green); border: 1.5px solid var(--green); color: var(--navy); }
+/* Outline on light backgrounds */
+.pill, .pill:hover, .pill.is-active { background: transparent; border: 1.5px solid var(--navy); color: var(--navy); }
+/* Outline on photos and video */
+.pill--light, .pill--light:hover, .btn-glass, .btn-glass:hover { background: transparent; border: 1.5px solid #fff; color: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.hero .btn-glass { text-shadow: 0 1px 4px rgba(0,0,0,.45); }
+/* Grey (form Back) */
+.btn--grey { background: #B4B4B4; border: 1.5px solid #B4B4B4; color: var(--navy); }
+
+/* Same size everywhere: undo the older one-off sizes */
+.pill--lg, .btn--apply, .btn--send, .details__pills .pill { height: var(--btn-h); padding: 0 var(--btn-px); font-size: var(--btn-fs); font-weight: 500; }
+.btn--send { width: auto; }
+/* See Details sits on a photo card, so it stays compact; it rises with the card */
+.biz-card__btn.pill { height: 34px; min-width: 0; padding: 0 16px; font-size: 14px; border-width: 1px; background: transparent; border-color: #fff; color: #fff; transform: none; }
+.biz-card:hover .biz-card__btn.pill, .biz-card .biz-card__btn.pill:hover { background: transparent; border-color: #fff; color: #fff; transform: none; }
+.nav__cta { height: 40px; min-width: 0; padding: 0 22px; font-size: 16px; }
+@media (max-width: 900px) { .nav__cta { height: var(--btn-h); } }
+.nav__link, .nav__link:hover { color: var(--navy); }
+
+/* Form buttons: same pill as the rest */
+.step-actions .btn { min-width: 150px; }
+.step-actions .btn[disabled] { opacity: .6; cursor: wait; transform: none; }
+@media (max-width: 600px) { .step-actions .btn { min-width: 0; width: 48%; } }
+
+/* Category buttons (Discover) */
+.chip { border: 1.5px solid #B4B4B4; background: transparent; color: var(--navy); transition: border-color .2s; }
+.chip:hover { border-color: var(--navy); background: transparent; }
+.chip.is-active, .chip.is-active:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+/* Campaign gallery tabs: a navy fill slides to the item under the mouse,
+   and goes back to the selected item when the mouse leaves */
+.tabs { position: relative; border: 1.5px solid #B4B4B4; isolation: isolate; }
+.tabs__ind { position: absolute; z-index: -1; top: 0; bottom: 0; left: 0; width: 0; border-radius: 999px; background: var(--navy);
+  transition: left .35s var(--ease), width .35s var(--ease); pointer-events: none; }
+.tabs__btn, .tabs__btn:hover, .tabs__btn.is-active { background: transparent; color: var(--navy); text-decoration: none; transition: color .25s; }
+.tabs__btn.is-lit { color: #fff; }
+.tabs:not(.has-ind) .tabs__btn.is-active { background: var(--navy); color: #fff; } /* before the script runs */
+
+/* Small icon buttons: no color change */
+.lightbox__btn:hover { background: rgba(255,255,255,.26); }
+
+/* Back to Top: one color, rises on hover, no click effect */
+.back-to-top, .back-to-top:hover, .back-to-top:active { background: var(--navy); color: #fff; }
+.back-to-top.is-visible:hover { transform: var(--btn-rise); }
+.back-to-top svg, .back-to-top:hover svg { transform: none; }
+
+/* =========================================================
+   25. NEW PHOTOS (Nov 16)
+   ========================================================= */
+/* Home: Get Featured banner is a slideshow (photos come already darkened) */
+.feature-banner::before { background: rgba(15,23,43,.18); }
+.slideshow--banner { position: absolute; inset: 0; min-height: 0; background: var(--navy); }
+.slideshow--banner .slideshow__img { transition: opacity 1.2s ease; }
+.feature-banner__content { text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+.feature-banner__content .btn { text-shadow: none; }
+
+/* About: "Behind the project" photo slideshow (photos have their own rounded corners) */
+.slideshow--about { width: 574px; min-height: 0; aspect-ratio: 1148 / 772; background: transparent; }
+.slideshow--about .slideshow__img { object-fit: contain; }
+.about-intro { grid-template-columns: 1fr 574px; }
+@media (max-width: 1100px) { .about-intro { grid-template-columns: 1fr 1fr; } .slideshow--about { width: 100%; } }
+@media (max-width: 760px) { .about-intro { grid-template-columns: 1fr; } }
+
+/* Get Featured hero: the new photo already fades into navy at the bottom */
+.apply-hero::after { background: linear-gradient(180deg, rgba(15,23,43,0) 55%, rgba(15,23,43,.35) 100%); }
+.apply-hero__bg img { object-position: center top; }
+
+/* =========================================================
+   26. GET FEATURED FORM (Nov 16)
+   ========================================================= */
+.apply__legend { margin: 0 0 56px; font-size: 17px; color: #555; }
+.req { color: #D1343B; font-weight: 700; }
+.opt { font-weight: 400; color: #8A8A8A; font-size: .9em; }
+.consent .choice > span:last-child { flex: 1; }
+
+/* Dropdowns (match the input boxes; open list matches the Year design) */
+.dropdown { position: relative; }
+.dropdown__btn { width: 100%; height: 67px; padding: 0 22px 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  border: 1.5px solid var(--navy); border-radius: 14px; background: transparent; font-size: 17px; color: var(--navy); text-align: left; }
+.dropdown__btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(42,225,115,.45); }
+.dropdown__value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dropdown__value.is-placeholder { color: #A8A8A8; font-style: italic; }
+.dropdown__arrow { flex: none; width: 24px; height: 24px; transition: transform .25s var(--ease); }
+.dropdown.is-open .dropdown__arrow { transform: rotate(180deg); }
+.dropdown.is-open .dropdown__btn { border-radius: 14px 14px 0 0; }
+.dropdown__list { position: absolute; z-index: 30; left: 0; right: 0; top: 100%; margin: 0; padding: 6px 0; list-style: none;
+  max-height: 178px; overflow-y: auto; overscroll-behavior: contain;
+  background: #F8F8F8; border: 1.5px solid var(--navy); border-top: 0; border-radius: 0 0 16px 16px; box-shadow: 0 14px 28px rgba(15,23,43,.14); outline: none; }
+.dropdown__list [role=option] { padding: 7px 20px; text-align: center; font-size: 18px; cursor: pointer; }
+.dropdown__list [role=option].is-highlighted { background: #EDEDED; }
+.dropdown__list [role=option][aria-selected="true"] { background: #D9D9D9; font-weight: 700; }
+.dropdown.has-error .dropdown__btn, .field.has-error .dropdown__btn { border-color: #E5484D; }
+.field.has-error .dropdown:not(.has-error) .dropdown__btn { border-color: var(--navy); }
+
+/* "Other" boxes that appear under a dropdown */
+.field__more { margin-top: 12px; }
+.field .field__more input.other-input { width: 100%; height: 56px; margin: 0; padding: 0 28px; border: 1.5px solid var(--navy); border-radius: 14px; font-size: 17px; }
+
+/* Operating hours: Days, Opens at, to, Closes at */
+.hours-row { display: grid; grid-template-columns: 1fr 1.4fr; gap: 16px; }
+.hours-row__times { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+.hours-row__times[hidden] { display: none; }
+.hours-row__to { font-size: 17px; color: #555; }
+@media (max-width: 760px) {
+  .hours-row { grid-template-columns: 1fr; }
+  .apply__legend { margin-bottom: 36px; font-size: 15px; }
+  .dropdown__btn { height: 56px; padding: 0 16px 0 20px; font-size: 16px; }
+}
+
+/* "Application Submitted" pop-up: small card, page blurred behind it */
+.submit-modal { position: fixed; inset: 0; z-index: 400; display: grid; place-items: center; padding: 20px; }
+.submit-modal[hidden] { display: none; }
+.submit-modal__backdrop { position: absolute; inset: 0; background: rgba(15,23,43,.35); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity .3s ease; }
+.submit-modal.is-open .submit-modal__backdrop { opacity: 1; }
+.submit-modal__card { position: relative; width: min(544px, 100%); max-height: calc(100vh - 40px); overflow-y: auto;
+  background: #FEFEFE; border-radius: 30px; padding: 64px 44px 52px; text-align: center; outline: none;
+  box-shadow: 0 30px 60px rgba(15,23,43,.25);
+  opacity: 0; transform: translateY(30px) scale(.94); transition: opacity .3s ease, transform .45s cubic-bezier(.34, 1.4, .64, 1); }
+.submit-modal.is-open .submit-modal__card { opacity: 1; transform: none; }
+.submit-modal__close { position: absolute; top: 26px; right: 26px; width: 40px; height: 40px; display: grid; place-items: center;
+  background: none; border: 0; padding: 0; color: #3A3A3A; }
+.submit-modal__close svg { width: 26px; height: 26px; }
+.submit-modal__icon { width: 118px; height: 118px; margin: 0 auto; border-radius: 50%; background: var(--navy); display: grid; place-items: center; }
+.submit-modal__icon svg { width: 44px; height: auto; }
+.submit-modal h2 { margin-top: 36px; font-family: var(--font-body); font-size: 30px; font-weight: 700; letter-spacing: -.3px; }
+.submit-modal__lead { margin-top: 6px; font-size: 16px; }
+.submit-modal__note { margin: 32px auto 0; max-width: 366px; background: #E6E6E6; border-radius: 6px; padding: 18px 26px; text-align: left; font-size: 14px; line-height: 1.55; }
+html.has-modal { overflow: hidden; }
+@media (max-width: 600px) {
+  .submit-modal__card { padding: 56px 22px 34px; border-radius: 24px; }
+  .submit-modal__icon { width: 96px; height: 96px; } .submit-modal__icon svg { width: 36px; }
+  .submit-modal h2 { margin-top: 26px; font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .submit-modal__card, .submit-modal__backdrop { transition: none; } }
+/* Primary buttons that took over older spots */
+.hero .btn--hero { margin-top: 50px; }
+.look-card { display: flex; flex-direction: column; }
+.look-card__body { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+.look-card .btn { margin-top: auto; }
+.look-card__body p { margin-bottom: 28px; }
+.spotlight .btn { margin-top: 90px; }
+@media (max-width: 900px) { .spotlight .btn { margin-top: 36px; } }
+.slideshow--banner { aspect-ratio: auto; height: auto; }

@@ -38,6 +38,90 @@ function clearError(field) {
   if (msg) msg.remove();
 }
 
+/* ---------- Dropdowns (Get Featured form) ----------
+   A button shows the current choice; clicking it opens a list.
+   Works with mouse, touch, and keyboard (arrows, Enter, Esc, or type the first letters). */
+function setupDropdown(dd) {
+  const btn = dd.querySelector(".dropdown__btn");
+  const list = dd.querySelector(".dropdown__list");
+  const input = dd.querySelector("input[type=hidden]");
+  const valueEl = btn.querySelector(".dropdown__value");
+  const placeholder = valueEl.textContent;
+  const options = [...list.querySelectorAll("[role=option]")];
+  let hi = -1; // highlighted option
+  let typed = "", typedAt = 0;
+
+  const highlight = (i, scroll = true) => {
+    hi = Math.max(0, Math.min(options.length - 1, i));
+    options.forEach((o, k) => o.classList.toggle("is-highlighted", k === hi));
+    list.setAttribute("aria-activedescendant", options[hi].id);
+    if (scroll) options[hi].scrollIntoView({ block: "nearest" });
+  };
+  const open = () => {
+    document.querySelectorAll(".dropdown.is-open").forEach((o) => o !== dd && o.closeDropdown());
+    dd.classList.add("is-open");
+    list.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+    let cur = options.findIndex((o) => o.dataset.value === input.value);
+    if (cur < 0 && dd.dataset.start) cur = options.findIndex((o) => o.dataset.value === dd.dataset.start);
+    highlight(cur >= 0 ? cur : 0, false);
+    // put the current choice in the middle of the list, like the design
+    const o = options[hi];
+    list.scrollTop = o.offsetTop - list.clientHeight / 2 + o.offsetHeight / 2;
+    list.focus({ preventScroll: true });
+  };
+  const close = (focusBtn = true) => {
+    if (!dd.classList.contains("is-open")) return;
+    dd.classList.remove("is-open");
+    list.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+    if (focusBtn) btn.focus({ preventScroll: true });
+  };
+  const choose = (i) => {
+    const o = options[i];
+    input.value = o.dataset.value;
+    valueEl.textContent = o.textContent;
+    valueEl.classList.remove("is-placeholder");
+    options.forEach((x) => x.setAttribute("aria-selected", String(x === o)));
+    close();
+    dd.dispatchEvent(new CustomEvent("dropdown-change", { bubbles: true }));
+  };
+  dd.closeDropdown = () => close(false);
+  dd.resetDropdown = () => {
+    input.value = "";
+    valueEl.textContent = placeholder;
+    valueEl.classList.add("is-placeholder");
+    options.forEach((x) => x.setAttribute("aria-selected", "false"));
+  };
+
+  btn.addEventListener("click", () => (dd.classList.contains("is-open") ? close() : open()));
+  btn.addEventListener("keydown", (e) => {
+    if (["ArrowDown", "ArrowUp", "Enter", " "].includes(e.key)) { e.preventDefault(); open(); }
+  });
+  options.forEach((o, i) => {
+    o.addEventListener("click", () => choose(i));
+    o.addEventListener("mousemove", () => hi !== i && highlight(i, false));
+  });
+  list.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); highlight(hi + 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); highlight(hi - 1); }
+    else if (e.key === "Home") { e.preventDefault(); highlight(0); }
+    else if (e.key === "End") { e.preventDefault(); highlight(options.length - 1); }
+    else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choose(hi); }
+    else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); close(); }
+    else if (e.key === "Tab") close(false);
+    else if (e.key.length === 1) {
+      const now = Date.now();
+      typed = (now - typedAt > 700 ? "" : typed) + e.key.toLowerCase();
+      typedAt = now;
+      const k = options.findIndex((o) => o.textContent.toLowerCase().startsWith(typed));
+      if (k >= 0) highlight(k);
+    }
+  });
+  document.addEventListener("pointerdown", (e) => { if (!dd.contains(e.target)) close(false); });
+}
+document.querySelectorAll("[data-dropdown]").forEach(setupDropdown);
+
 /* Checks every field inside "area". Returns true if all good. */
 function validateArea(area) {
   let ok = true;
@@ -46,7 +130,7 @@ function validateArea(area) {
 
   // Text, email, phone, textarea, file
   area.querySelectorAll("input:not([type=radio]):not([type=checkbox]):not([type=hidden]), textarea").forEach((el) => {
-    if (el.classList.contains("other-input")) return;
+    if (el.closest("[hidden]")) return; // a part of the form that is not showing right now
     clearError(el);
     const v = el.type === "file" ? "" : el.value.trim();
 
@@ -69,14 +153,14 @@ function validateArea(area) {
     }
   });
 
-  // Business category (pick one; "Other" needs text)
-  area.querySelectorAll('[data-required-group="category"]').forEach((group) => {
-    clearError(group);
-    const picked = group.querySelector("input[type=radio]:checked");
-    if (!picked) return fail(group, "Please choose a business category.");
-    if (picked.value === "Other" && !group.querySelector(".other-input").value.trim()) {
-      fail(group, "Please type your business category.");
-    }
+  // Dropdowns marked as required need a choice
+  area.querySelectorAll(".dropdown[data-required]").forEach((dd) => {
+    if (dd.closest("[hidden]")) return;
+    const btn = dd.querySelector(".dropdown__btn");
+    if (!dd.querySelector("input[type=hidden]").value) {
+      dd.classList.add("has-error");
+      fail(btn, "Please choose an option.");
+    } else dd.classList.remove("has-error");
   });
 
   // Consent (all three must be ticked)
@@ -88,6 +172,9 @@ function validateArea(area) {
   });
 
   if (firstBad) {
+    // jump to the problem that comes first on the page
+    const all = [...area.querySelectorAll(".has-error")];
+    if (all.length) { const w = all[0]; firstBad = w.matches("fieldset") ? w : (w.querySelector(".dropdown__btn, input:not([type=hidden]), textarea") || w); }
     const target = firstBad.matches("fieldset") ? firstBad.querySelector("input") : firstBad;
     target.focus({ preventScroll: true });
     firstBad.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -131,22 +218,15 @@ if (applyForm) {
   /* Checks a section quietly (no red messages) to see if it's complete */
   function isComplete(section) {
     for (const el of section.querySelectorAll("input[required]:not([type=radio]):not([type=checkbox]), textarea[required]")) {
+      if (el.closest("[hidden]")) continue;
       if (el.type === "file") { if (!el.files[0]) return false; continue; }
       const v = el.value.trim();
       if (!v) return false;
       if (el.type === "email" && !isEmail(v)) return false;
       if (el.hasAttribute("data-phone") && !isPhone(v)) return false;
     }
-    const year = section.querySelector("[data-year]");
-    if (year && year.value.trim()) {
-      const y = Number(year.value), now = new Date().getFullYear();
-      if (!/^\d{4}$/.test(year.value.trim()) || y < 1500 || y > now) return false;
-    }
-    const cat = section.querySelector('[data-required-group="category"]');
-    if (cat) {
-      const picked = cat.querySelector("input[type=radio]:checked");
-      if (!picked) return false;
-      if (picked.value === "Other" && !cat.querySelector(".other-input").value.trim()) return false;
+    for (const dd of section.querySelectorAll(".dropdown[data-required]")) {
+      if (!dd.closest("[hidden]") && !dd.querySelector("input[type=hidden]").value) return false;
     }
     const consent = section.querySelector('[data-required-group="consent"]');
     if (consent && ![...consent.querySelectorAll("input[type=checkbox]")].every((b) => b.checked)) return false;
@@ -209,18 +289,27 @@ if (applyForm) {
   // Clear an error as soon as the person fixes the field
   applyForm.addEventListener("input", (e) => {
     const t = e.target;
-    if (t.type === "radio" || t.type === "checkbox" || t.classList.contains("other-input")) {
+    if (t.type === "radio" || t.type === "checkbox") {
       const group = t.closest("[data-required-group]");
       if (group) clearError(group);
     } else clearError(t);
   });
 
-  // Typing in the "Other" box selects "Other"; choosing "Other" moves the cursor into the box
-  const otherRadio = applyForm.querySelector('input[value="Other"]');
-  const otherInput = applyForm.querySelector(".other-input");
-  otherRadio.addEventListener("change", () => otherInput.focus());
-  otherInput.addEventListener("input", () => { if (otherInput.value) { otherRadio.checked = true; updateProgress(); } });
-  otherInput.addEventListener("click", (e) => e.stopPropagation());
+  // Parts that appear or hide depending on a dropdown choice ("Other" boxes, opening times)
+  function applyConditions() {
+    const val = (name) => (applyForm.querySelector(`input[type=hidden][name="${name}"]`) || {}).value || "";
+    applyForm.querySelectorAll("[data-show-when]").forEach((el) => {
+      const [name, wanted] = el.dataset.showWhen.split("=");
+      const show = wanted.split("|").includes(val(name));
+      if (el.hidden === show) { el.hidden = !show; if (show) { const i = el.querySelector("input"); if (i) setTimeout(() => i.focus(), 30); } }
+    });
+    applyForm.querySelectorAll("[data-hide-when]").forEach((el) => {
+      const [name, list] = el.dataset.hideWhen.split("=");
+      el.hidden = list.split("|").includes(val(name));
+    });
+    updateProgress();
+  }
+  applyForm.addEventListener("dropdown-change", (e) => { clearError(e.target.querySelector(".dropdown__btn")); e.target.classList.remove("has-error"); applyConditions(); });
 
   // Upload box: show the chosen file name, support drag and drop
   const fileInput = document.getElementById("a-proof");
@@ -250,8 +339,13 @@ if (applyForm) {
       const fd = new FormData(applyForm);
       const data = {};
       fd.forEach((v, k) => { if (k !== "proof") data[k] = v; });
+      // Put the dropdown answers together the same way the Google Sheet expects them
       if (data.category === "Other") data.category = `Other: ${data.categoryOther || ""}`;
-      delete data.categoryOther;
+      if (data.role === "Other") data.role = `Other: ${data.roleOther || ""}`;
+      if (data.opDays === "Other schedule") data.operatingHours = data.opOther || "";
+      else if (["Open 24 hours, daily", "By reservation only"].includes(data.opDays)) data.operatingHours = data.opDays;
+      else data.operatingHours = `${data.opDays}, ${data.opOpen} – ${data.opClose}`;
+      ["categoryOther", "roleOther", "opDays", "opOpen", "opClose", "opOther"].forEach((k) => delete data[k]);
 
       const file = fileInput.files[0];
       if (file && SHEET_URL) {
@@ -261,7 +355,7 @@ if (applyForm) {
       }
 
       await sendToSheet(data);
-      window.location.href = "submitted.html";
+      openModal();
     } catch (err) {
       console.error(err);
       note.textContent = "Something went wrong while sending. Please check your internet connection and try again.";
@@ -277,7 +371,35 @@ if (applyForm) {
     else location.href = "index.html";
   });
 
-  updateProgress();
+  /* "Application Submitted" pop-up: a small card over a blurred page */
+  const modal = document.getElementById("submit-modal");
+  const card = modal.querySelector(".submit-modal__card");
+  function openModal() {
+    modal.hidden = false;
+    document.documentElement.classList.add("has-modal");
+    requestAnimationFrame(() => modal.classList.add("is-open"));
+    card.focus();
+  }
+  function closeModal() {
+    modal.classList.remove("is-open");
+    document.documentElement.classList.remove("has-modal");
+    modal.hidden = true;
+    // start fresh: empty form, back at the top
+    applyForm.reset();
+    applyForm.querySelectorAll(".dropdown").forEach((dd) => dd.resetDropdown && dd.resetDropdown());
+    fileLabel.textContent = "";
+    const submitBtn = document.getElementById("apply-submit");
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit";
+    furthest = 0; active = 0;
+    applyConditions();
+    scrollTo({ top: 0, behavior: "smooth" });
+  }
+  modal.querySelectorAll("[data-close-modal]").forEach((el) => el.addEventListener("click", closeModal));
+  addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+  card.addEventListener("keydown", (e) => { if (e.key === "Tab") { e.preventDefault(); modal.querySelector(".submit-modal__close").focus(); } });
+
+  applyConditions();
 }
 
 /* =========================================================

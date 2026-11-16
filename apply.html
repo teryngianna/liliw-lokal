@@ -49,6 +49,7 @@
     </div>
     <form class="apply" id="apply-form" novalidate>
       <input type="hidden" name="formType" value="application">
+      <p class="apply__legend">Fields marked with an asterisk (<span class="req">*</span>) are required. Fields marked <span class="opt">(Optional)</span> can be left blank.</p>
 
       <!-- STEP 1 -->
       <section class="apply-step" data-step="1">
@@ -58,23 +59,23 @@
         </div>
         <div class="field-grid">
           <div class="field">
-            <label for="a-name">Business Name *</label>
+            <label for="a-name">Business Name <span class="req" aria-hidden="true">*</span></label>
             <input id="a-name" name="businessName" type="text" placeholder="Enter the registered business name" required>
           </div>
           <div class="field">
-            <label for="a-address">Business Address *</label>
-            <input id="a-address" name="businessAddress" type="text" placeholder="Enter the business’ complete location in Liliw, Laguna" required>
+            <label for="a-address">Business Address <span class="req" aria-hidden="true">*</span></label>
+            <input id="a-address" name="businessAddress" type="text" placeholder="Street and barangay in Liliw, Laguna" required>
           </div>
-          <fieldset class="field" data-required-group="category">
-            <legend>Business Category *</legend>
-            <label class="choice"><input type="radio" name="category" value="Restaurant / Food Business"><span class="choice__dot"></span>Restaurant / Food Business</label>
-            <label class="choice"><input type="radio" name="category" value="Hospitality"><span class="choice__dot"></span>Hospitality</label>
-            <label class="choice"><input type="radio" name="category" value="Handicrafts"><span class="choice__dot"></span>Handicrafts</label>
-            <label class="choice"><input type="radio" name="category" value="Other"><span class="choice__dot"></span>Other:<input class="other-input" name="categoryOther" type="text" aria-label="Other category"></label>
-          </fieldset>
           <div class="field">
-            <label for="a-year">Year Established</label>
-            <input id="a-year" name="yearEstablished" type="text" inputmode="numeric" maxlength="4" placeholder="e.g. 2025" data-year>
+            <label for="a-category">Business Category <span class="req" aria-hidden="true">*</span></label>
+            <div class="dropdown" data-dropdown data-required><input type="hidden" name="category" value=""><button class="dropdown__btn" id="a-category" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dropdown__value is-placeholder">Select a category</span><svg class="dropdown__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dropdown__list" role="listbox" tabindex="-1" hidden><li role="option" id="a-category-o0" data-value="Food" aria-selected="false">Food</li><li role="option" id="a-category-o1" data-value="Crafts" aria-selected="false">Crafts</li><li role="option" id="a-category-o2" data-value="Hospitality" aria-selected="false">Hospitality</li><li role="option" id="a-category-o3" data-value="Other" aria-selected="false">Other</li></ul></div>
+            <div class="field__more" data-show-when="category=Other" hidden>
+              <input class="other-input" name="categoryOther" type="text" placeholder="Please specify your category" aria-label="Other category" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="a-year">Year Established <span class="opt">(Optional)</span></label>
+            <div class="dropdown" data-dropdown><input type="hidden" name="yearEstablished" value=""><button class="dropdown__btn" id="a-year" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dropdown__value is-placeholder">Select a year</span><svg class="dropdown__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dropdown__list" role="listbox" tabindex="-1" hidden><li role="option" id="a-year-o0" data-value="2026" aria-selected="false">2026</li><li role="option" id="a-year-o1" data-value="2025" aria-selected="false">2025</li><li role="option" id="a-year-o2" data-value="2024" aria-selected="false">2024</li><li role="option" id="a-year-o3" data-value="2023" aria-selected="false">2023</li><li role="option" id="a-year-o4" data-value="2022" aria-selected="false">2022</li><li role="option" id="a-year-o5" data-value="2021" aria-selected="false">2021</li><li role="option" id="a-year-o6" data-value="2020" aria-selected="false">2020</li><li role="option" id="a-year-o7" data-value="2019" aria-selected="false">2019</li><li role="option" id="a-year-o8" data-value="2018" aria-selected="false">2018</li><li role="option" id="a-year-o9" data-value="2017" aria-selected="false">2017</li><li role="option" id="a-year-o10" data-value="2016" aria-selected="false">2016</li><li role="option" id="a-year-o11" data-value="2015" aria-selected="false">2015</li><li role="option" id="a-year-o12" data-value="2014" aria-selected="false">2014</li><li role="option" id="a-year-o13" data-value="2013" aria-selected="false">2013</li><li role="option" id="a-year-o14" data-value="2012" aria-selected="false">2012</li><li role="option" id="a-year-o15" data-value="2011" aria-selected="false">2011</li><li role="option" id="a-year-o16" data-value="2010" aria-selected="false">2010</li><li role="option" id="a-year-o17" data-value="2009" aria-selected="false">2009</li><li role="option" id="a-year-o18" data-value="2008" aria-selected="false">2008</li><li role="option" id="a-year-o19" data-value="2007" aria-selected="false">2007</li><li role="option" id="a-year-o20" data-value="2006" aria-selected="false">2006</li><li role="option" id="a-year-o21" data-value="2005" aria-selected="false">2005</li><li role="option" id="a-year-o22" data-value="2004" aria-selected="false">2004</li><li role="option" id="a-year-o23" data-value="2003" aria-selected="false">2003</li><li role="option" id="a-year-o24" data-value="2002" aria-selected="false">2002</li><li role="option" id="a-year-o25" data-value="2001" aria-selected="false">2001</li><li role="option" id="a-year-o26" data-value="2000" aria-selected="false">2000</li><li role="option" id="a-year-o27" data-value="1999" aria-selected="false">1999</li><li role="option" id="a-year-o28" data-value="1998" aria-selected="false">1998</li><li role="option" id="a-year-o29" data-value="1997" aria-selected="false">1997</li><li role="option" id="a-year-o30" data-value="1996" aria-selected="false">1996</li><li role="option" id="a-year-o31" data-value="1995" aria-selected="false">1995</li><li role="option" id="a-year-o32" data-value="1994" aria-selected="false">1994</li><li role="option" id="a-year-o33" data-value="1993" aria-selected="false">1993</li><li role="option" id="a-year-o34" data-value="1992" aria-selected="false">1992</li><li role="option" id="a-year-o35" data-value="1991" aria-selected="false">1991</li><li role="option" id="a-year-o36" data-value="1990" aria-selected="false">1990</li><li role="option" id="a-year-o37" data-value="1989" aria-selected="false">1989</li><li role="option" id="a-year-o38" data-value="1988" aria-selected="false">1988</li><li role="option" id="a-year-o39" data-value="1987" aria-selected="false">1987</li><li role="option" id="a-year-o40" data-value="1986" aria-selected="false">1986</li><li role="option" id="a-year-o41" data-value="1985" aria-selected="false">1985</li><li role="option" id="a-year-o42" data-value="1984" aria-selected="false">1984</li><li role="option" id="a-year-o43" data-value="1983" aria-selected="false">1983</li><li role="option" id="a-year-o44" data-value="1982" aria-selected="false">1982</li><li role="option" id="a-year-o45" data-value="1981" aria-selected="false">1981</li><li role="option" id="a-year-o46" data-value="1980" aria-selected="false">1980</li><li role="option" id="a-year-o47" data-value="1979" aria-selected="false">1979</li><li role="option" id="a-year-o48" data-value="1978" aria-selected="false">1978</li><li role="option" id="a-year-o49" data-value="1977" aria-selected="false">1977</li><li role="option" id="a-year-o50" data-value="1976" aria-selected="false">1976</li><li role="option" id="a-year-o51" data-value="1975" aria-selected="false">1975</li><li role="option" id="a-year-o52" data-value="1974" aria-selected="false">1974</li><li role="option" id="a-year-o53" data-value="1973" aria-selected="false">1973</li><li role="option" id="a-year-o54" data-value="1972" aria-selected="false">1972</li><li role="option" id="a-year-o55" data-value="1971" aria-selected="false">1971</li><li role="option" id="a-year-o56" data-value="1970" aria-selected="false">1970</li><li role="option" id="a-year-o57" data-value="1969" aria-selected="false">1969</li><li role="option" id="a-year-o58" data-value="1968" aria-selected="false">1968</li><li role="option" id="a-year-o59" data-value="1967" aria-selected="false">1967</li><li role="option" id="a-year-o60" data-value="1966" aria-selected="false">1966</li><li role="option" id="a-year-o61" data-value="1965" aria-selected="false">1965</li><li role="option" id="a-year-o62" data-value="1964" aria-selected="false">1964</li><li role="option" id="a-year-o63" data-value="1963" aria-selected="false">1963</li><li role="option" id="a-year-o64" data-value="1962" aria-selected="false">1962</li><li role="option" id="a-year-o65" data-value="1961" aria-selected="false">1961</li><li role="option" id="a-year-o66" data-value="1960" aria-selected="false">1960</li><li role="option" id="a-year-o67" data-value="1959" aria-selected="false">1959</li><li role="option" id="a-year-o68" data-value="1958" aria-selected="false">1958</li><li role="option" id="a-year-o69" data-value="1957" aria-selected="false">1957</li><li role="option" id="a-year-o70" data-value="1956" aria-selected="false">1956</li><li role="option" id="a-year-o71" data-value="1955" aria-selected="false">1955</li><li role="option" id="a-year-o72" data-value="1954" aria-selected="false">1954</li><li role="option" id="a-year-o73" data-value="1953" aria-selected="false">1953</li><li role="option" id="a-year-o74" data-value="1952" aria-selected="false">1952</li><li role="option" id="a-year-o75" data-value="1951" aria-selected="false">1951</li><li role="option" id="a-year-o76" data-value="1950" aria-selected="false">1950</li><li role="option" id="a-year-o77" data-value="Before 1950" aria-selected="false">Before 1950</li></ul></div>
           </div>
         </div>
       </section>
@@ -87,15 +88,15 @@
         </div>
         <div class="field-grid">
           <div class="field">
-            <label for="a-desc">Business Description *</label>
+            <label for="a-desc">Business Description <span class="req" aria-hidden="true">*</span></label>
             <textarea id="a-desc" name="description" placeholder="Tell us briefly about the business, products, or services." required></textarea>
           </div>
           <div class="field">
-            <label for="a-unique">What makes your business unique?</label>
+            <label for="a-unique">What Makes Your Business Unique? <span class="opt">(Optional)</span></label>
             <textarea id="a-unique" name="unique" placeholder="Share what makes the business special or different."></textarea>
           </div>
           <div class="field field--full">
-            <label for="a-story">Business Background/Story</label>
+            <label for="a-story">Business Background / Story <span class="opt">(Optional)</span></label>
             <textarea id="a-story" class="is-short" name="story" placeholder="Tell us how the business started."></textarea>
           </div>
         </div>
@@ -109,35 +110,53 @@
         </div>
         <div class="field-grid">
           <div class="field">
-            <label for="a-phone">Business Contact Number *</label>
-            <input id="a-phone" name="contactNumber" type="tel" placeholder="Enter an active contact number" required data-phone>
+            <label for="a-phone">Business Contact Number <span class="req" aria-hidden="true">*</span></label>
+            <input id="a-phone" name="contactNumber" type="tel" inputmode="tel" placeholder="e.g. 0912 345 6789" required data-phone>
           </div>
           <div class="field">
-            <label for="a-hours">Operating Hours*</label>
-            <input id="a-hours" name="operatingHours" type="text" placeholder="e.g. Monday - Saturday, 9:00 AM - 7:00 PM" required>
-          </div>
-          <div class="field">
-            <label for="a-email">Email Address*</label>
+            <label for="a-email">Email Address <span class="req" aria-hidden="true">*</span></label>
             <input id="a-email" name="email" type="email" placeholder="Enter an active email address" required>
           </div>
+          <div class="field field--full">
+            <label for="a-days">Operating Hours <span class="req" aria-hidden="true">*</span></label>
+            <input type="hidden" name="operatingHours" value="">
+            <div class="hours-row">
+              <div class="dropdown" data-dropdown data-required><input type="hidden" name="opDays" value=""><button class="dropdown__btn" id="a-days" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Days open"><span class="dropdown__value is-placeholder">Days open</span><svg class="dropdown__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dropdown__list" role="listbox" tabindex="-1" hidden><li role="option" id="a-days-o0" data-value="Monday – Sunday" aria-selected="false">Monday – Sunday</li><li role="option" id="a-days-o1" data-value="Monday – Saturday" aria-selected="false">Monday – Saturday</li><li role="option" id="a-days-o2" data-value="Monday – Friday" aria-selected="false">Monday – Friday</li><li role="option" id="a-days-o3" data-value="Tuesday – Sunday" aria-selected="false">Tuesday – Sunday</li><li role="option" id="a-days-o4" data-value="Weekends only" aria-selected="false">Weekends only</li><li role="option" id="a-days-o5" data-value="Open 24 hours, daily" aria-selected="false">Open 24 hours, daily</li><li role="option" id="a-days-o6" data-value="By reservation only" aria-selected="false">By reservation only</li><li role="option" id="a-days-o7" data-value="Other schedule" aria-selected="false">Other schedule</li></ul></div>
+              <div class="hours-row__times" data-hide-when="opDays=Open 24 hours, daily|By reservation only">
+                <div class="dropdown" data-dropdown data-required data-start="8:00 AM"><input type="hidden" name="opOpen" value=""><button class="dropdown__btn" id="a-open" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Opening time"><span class="dropdown__value is-placeholder">Opens at</span><svg class="dropdown__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dropdown__list" role="listbox" tabindex="-1" hidden><li role="option" id="a-open-o0" data-value="5:00 AM" aria-selected="false">5:00 AM</li><li role="option" id="a-open-o1" data-value="5:30 AM" aria-selected="false">5:30 AM</li><li role="option" id="a-open-o2" data-value="6:00 AM" aria-selected="false">6:00 AM</li><li role="option" id="a-open-o3" data-value="6:30 AM" aria-selected="false">6:30 AM</li><li role="option" id="a-open-o4" data-value="7:00 AM" aria-selected="false">7:00 AM</li><li role="option" id="a-open-o5" data-value="7:30 AM" aria-selected="false">7:30 AM</li><li role="option" id="a-open-o6" data-value="8:00 AM" aria-selected="false">8:00 AM</li><li role="option" id="a-open-o7" data-value="8:30 AM" aria-selected="false">8:30 AM</li><li role="option" id="a-open-o8" data-value="9:00 AM" aria-selected="false">9:00 AM</li><li role="option" id="a-open-o9" data-value="9:30 AM" aria-selected="false">9:30 AM</li><li role="option" id="a-open-o10" data-value="10:00 AM" aria-selected="false">10:00 AM</li><li role="option" id="a-open-o11" data-value="10:30 AM" aria-selected="false">10:30 AM</li><li role="option" id="a-open-o12" data-value="11:00 AM" aria-selected="false">11:00 AM</li><li role="option" id="a-open-o13" data-value="11:30 AM" aria-selected="false">11:30 AM</li><li role="option" id="a-open-o14" data-value="12:00 PM" aria-selected="false">12:00 PM</li><li role="option" id="a-open-o15" data-value="12:30 PM" aria-selected="false">12:30 PM</li><li role="option" id="a-open-o16" data-value="1:00 PM" aria-selected="false">1:00 PM</li><li role="option" id="a-open-o17" data-value="1:30 PM" aria-selected="false">1:30 PM</li><li role="option" id="a-open-o18" data-value="2:00 PM" aria-selected="false">2:00 PM</li><li role="option" id="a-open-o19" data-value="2:30 PM" aria-selected="false">2:30 PM</li><li role="option" id="a-open-o20" data-value="3:00 PM" aria-selected="false">3:00 PM</li><li role="option" id="a-open-o21" data-value="3:30 PM" aria-selected="false">3:30 PM</li><li role="option" id="a-open-o22" data-value="4:00 PM" aria-selected="false">4:00 PM</li><li role="option" id="a-open-o23" data-value="4:30 PM" aria-selected="false">4:30 PM</li><li role="option" id="a-open-o24" data-value="5:00 PM" aria-selected="false">5:00 PM</li><li role="option" id="a-open-o25" data-value="5:30 PM" aria-selected="false">5:30 PM</li><li role="option" id="a-open-o26" data-value="6:00 PM" aria-selected="false">6:00 PM</li><li role="option" id="a-open-o27" data-value="6:30 PM" aria-selected="false">6:30 PM</li><li role="option" id="a-open-o28" data-value="7:00 PM" aria-selected="false">7:00 PM</li><li role="option" id="a-open-o29" data-value="7:30 PM" aria-selected="false">7:30 PM</li><li role="option" id="a-open-o30" data-value="8:00 PM" aria-selected="false">8:00 PM</li><li role="option" id="a-open-o31" data-value="8:30 PM" aria-selected="false">8:30 PM</li><li role="option" id="a-open-o32" data-value="9:00 PM" aria-selected="false">9:00 PM</li><li role="option" id="a-open-o33" data-value="9:30 PM" aria-selected="false">9:30 PM</li><li role="option" id="a-open-o34" data-value="10:00 PM" aria-selected="false">10:00 PM</li><li role="option" id="a-open-o35" data-value="10:30 PM" aria-selected="false">10:30 PM</li><li role="option" id="a-open-o36" data-value="11:00 PM" aria-selected="false">11:00 PM</li><li role="option" id="a-open-o37" data-value="11:30 PM" aria-selected="false">11:30 PM</li><li role="option" id="a-open-o38" data-value="12:00 AM (midnight)" aria-selected="false">12:00 AM (midnight)</li></ul></div>
+                <span class="hours-row__to" aria-hidden="true">to</span>
+                <div class="dropdown" data-dropdown data-required data-start="6:00 PM"><input type="hidden" name="opClose" value=""><button class="dropdown__btn" id="a-close" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Closing time"><span class="dropdown__value is-placeholder">Closes at</span><svg class="dropdown__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dropdown__list" role="listbox" tabindex="-1" hidden><li role="option" id="a-close-o0" data-value="5:00 AM" aria-selected="false">5:00 AM</li><li role="option" id="a-close-o1" data-value="5:30 AM" aria-selected="false">5:30 AM</li><li role="option" id="a-close-o2" data-value="6:00 AM" aria-selected="false">6:00 AM</li><li role="option" id="a-close-o3" data-value="6:30 AM" aria-selected="false">6:30 AM</li><li role="option" id="a-close-o4" data-value="7:00 AM" aria-selected="false">7:00 AM</li><li role="option" id="a-close-o5" data-value="7:30 AM" aria-selected="false">7:30 AM</li><li role="option" id="a-close-o6" data-value="8:00 AM" aria-selected="false">8:00 AM</li><li role="option" id="a-close-o7" data-value="8:30 AM" aria-selected="false">8:30 AM</li><li role="option" id="a-close-o8" data-value="9:00 AM" aria-selected="false">9:00 AM</li><li role="option" id="a-close-o9" data-value="9:30 AM" aria-selected="false">9:30 AM</li><li role="option" id="a-close-o10" data-value="10:00 AM" aria-selected="false">10:00 AM</li><li role="option" id="a-close-o11" data-value="10:30 AM" aria-selected="false">10:30 AM</li><li role="option" id="a-close-o12" data-value="11:00 AM" aria-selected="false">11:00 AM</li><li role="option" id="a-close-o13" data-value="11:30 AM" aria-selected="false">11:30 AM</li><li role="option" id="a-close-o14" data-value="12:00 PM" aria-selected="false">12:00 PM</li><li role="option" id="a-close-o15" data-value="12:30 PM" aria-selected="false">12:30 PM</li><li role="option" id="a-close-o16" data-value="1:00 PM" aria-selected="false">1:00 PM</li><li role="option" id="a-close-o17" data-value="1:30 PM" aria-selected="false">1:30 PM</li><li role="option" id="a-close-o18" data-value="2:00 PM" aria-selected="false">2:00 PM</li><li role="option" id="a-close-o19" data-value="2:30 PM" aria-selected="false">2:30 PM</li><li role="option" id="a-close-o20" data-value="3:00 PM" aria-selected="false">3:00 PM</li><li role="option" id="a-close-o21" data-value="3:30 PM" aria-selected="false">3:30 PM</li><li role="option" id="a-close-o22" data-value="4:00 PM" aria-selected="false">4:00 PM</li><li role="option" id="a-close-o23" data-value="4:30 PM" aria-selected="false">4:30 PM</li><li role="option" id="a-close-o24" data-value="5:00 PM" aria-selected="false">5:00 PM</li><li role="option" id="a-close-o25" data-value="5:30 PM" aria-selected="false">5:30 PM</li><li role="option" id="a-close-o26" data-value="6:00 PM" aria-selected="false">6:00 PM</li><li role="option" id="a-close-o27" data-value="6:30 PM" aria-selected="false">6:30 PM</li><li role="option" id="a-close-o28" data-value="7:00 PM" aria-selected="false">7:00 PM</li><li role="option" id="a-close-o29" data-value="7:30 PM" aria-selected="false">7:30 PM</li><li role="option" id="a-close-o30" data-value="8:00 PM" aria-selected="false">8:00 PM</li><li role="option" id="a-close-o31" data-value="8:30 PM" aria-selected="false">8:30 PM</li><li role="option" id="a-close-o32" data-value="9:00 PM" aria-selected="false">9:00 PM</li><li role="option" id="a-close-o33" data-value="9:30 PM" aria-selected="false">9:30 PM</li><li role="option" id="a-close-o34" data-value="10:00 PM" aria-selected="false">10:00 PM</li><li role="option" id="a-close-o35" data-value="10:30 PM" aria-selected="false">10:30 PM</li><li role="option" id="a-close-o36" data-value="11:00 PM" aria-selected="false">11:00 PM</li><li role="option" id="a-close-o37" data-value="11:30 PM" aria-selected="false">11:30 PM</li><li role="option" id="a-close-o38" data-value="12:00 AM (midnight)" aria-selected="false">12:00 AM (midnight)</li></ul></div>
+              </div>
+            </div>
+            <div class="field__more" data-show-when="opDays=Other schedule" hidden>
+              <input class="other-input" name="opOther" type="text" placeholder="Describe your schedule, e.g. Mon – Thu 9 AM – 5 PM, Fri – Sun 9 AM – 8 PM" aria-label="Other schedule" required>
+            </div>
+          </div>
           <div class="field">
-            <label for="a-products">Products / Services Offered *</label>
+            <label for="a-products">Products / Services Offered <span class="req" aria-hidden="true">*</span></label>
             <input id="a-products" name="products" type="text" placeholder="List the business’ main products and/or services." required>
           </div>
           <div class="field">
-            <label for="a-social">Social Media / Website Link *</label>
-            <textarea id="a-social" class="is-tiny" name="socialLinks" rows="2" placeholder="Link/s of social media pages/websites (e.g. Facebook and IG)" required></textarea>
+            <label for="a-price">Price Range <span class="opt">(Optional)</span></label>
+            <div class="dropdown" data-dropdown><input type="hidden" name="priceRange" value=""><button class="dropdown__btn" id="a-price" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dropdown__value is-placeholder">Select a price range</span><svg class="dropdown__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dropdown__list" role="listbox" tabindex="-1" hidden><li role="option" id="a-price-o0" data-value="Below ₱100" aria-selected="false">Below ₱100</li><li role="option" id="a-price-o1" data-value="₱100 – ₱500" aria-selected="false">₱100 – ₱500</li><li role="option" id="a-price-o2" data-value="₱500 – ₱1,000" aria-selected="false">₱500 – ₱1,000</li><li role="option" id="a-price-o3" data-value="₱1,000 – ₱3,000" aria-selected="false">₱1,000 – ₱3,000</li><li role="option" id="a-price-o4" data-value="₱3,000 – ₱5,000" aria-selected="false">₱3,000 – ₱5,000</li><li role="option" id="a-price-o5" data-value="Above ₱5,000" aria-selected="false">Above ₱5,000</li></ul></div>
           </div>
           <div class="field">
-            <label for="a-price">Price Range *</label>
-            <input id="a-price" name="priceRange" type="text" placeholder="e.g. PHP 100 - PHP 500" required>
+            <label for="a-social">Social Media / Website Link <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="a-social" class="is-tiny" name="socialLinks" rows="2" placeholder="Link/s of social media pages or websites (e.g. Facebook and IG)" required></textarea>
           </div>
           <div class="field">
-            <label for="a-owner">Business Owner / Representative Name *</label>
-            <input id="a-owner" name="ownerName" type="text" placeholder="Enter Full Name" autocomplete="name" required>
+            <label for="a-owner">Business Owner / Representative Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="a-owner" name="ownerName" type="text" placeholder="Enter full name" autocomplete="name" required>
           </div>
-          <div class="field" style="grid-row: span 2;">
-            <label for="a-proof">Proof of Registration *</label>
+          <div class="field">
+            <label for="a-role">Position / Role <span class="req" aria-hidden="true">*</span></label>
+            <div class="dropdown" data-dropdown data-required><input type="hidden" name="role" value=""><button class="dropdown__btn" id="a-role" type="button" aria-haspopup="listbox" aria-expanded="false"><span class="dropdown__value is-placeholder">Select your role</span><svg class="dropdown__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><ul class="dropdown__list" role="listbox" tabindex="-1" hidden><li role="option" id="a-role-o0" data-value="Business Owner" aria-selected="false">Business Owner</li><li role="option" id="a-role-o1" data-value="Co-owner" aria-selected="false">Co-owner</li><li role="option" id="a-role-o2" data-value="Manager" aria-selected="false">Manager</li><li role="option" id="a-role-o3" data-value="Authorized Representative" aria-selected="false">Authorized Representative</li><li role="option" id="a-role-o4" data-value="Other" aria-selected="false">Other</li></ul></div>
+            <div class="field__more" data-show-when="role=Other" hidden>
+              <input class="other-input" name="roleOther" type="text" placeholder="Please specify your role" aria-label="Other role" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="a-proof">Proof of Registration <span class="req" aria-hidden="true">*</span></label>
             <label class="upload" id="upload-box">
               <input id="a-proof" name="proof" type="file" accept=".jpg,.jpeg,.png,.pdf,.docx" required>
               <svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 15v5h16v-5"/></svg>
@@ -145,10 +164,6 @@
               <span>(JPG, PNG, DOCX, PDF - Up to 10MB)</span>
               <em class="upload__file" id="upload-file"></em>
             </label>
-          </div>
-          <div class="field">
-            <label for="a-role">Position / Role *</label>
-            <input id="a-role" name="role" type="text" placeholder="e.g. Business Owner, Manager, Authorized Representative" required>
           </div>
         </div>
       </section>
@@ -160,18 +175,34 @@
           <div><h2>Consent</h2><p>Review and agree to the terms regarding your information, privacy, and business feature submission.</p></div>
         </div>
         <fieldset class="field consent" data-required-group="consent">
-          <legend class="visually-hidden">Consent</legend>
-          <label class="choice"><input type="checkbox" name="consent1" value="Yes" required><span class="choice__dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>I consent to the collection, use, storage, and processing of my information for reviewing and processing my application.</label>
-          <label class="choice"><input type="checkbox" name="consent2" value="Yes" required><span class="choice__dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>I confirm that the information and materials I submit are accurate and that I have the right or permission to use and authorize their publication.</label>
-          <label class="choice"><input type="checkbox" name="consent3" value="Yes" required><span class="choice__dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>I have read and understood the information provided and agree to the terms for submitting and potentially featuring my business.</label>
+          <legend class="visually-hidden">Consent (all required)</legend>
+          <label class="choice"><input type="checkbox" name="consent1" value="Yes" required><span class="choice__dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>I consent to the collection, use, storage, and processing of my information for reviewing and processing my application.<span class="req" aria-hidden="true"> *</span></span></label>
+          <label class="choice"><input type="checkbox" name="consent2" value="Yes" required><span class="choice__dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>I confirm that the information and materials I submit are accurate and that I have the right or permission to use and authorize their publication.<span class="req" aria-hidden="true"> *</span></span></label>
+          <label class="choice"><input type="checkbox" name="consent3" value="Yes" required><span class="choice__dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>I have read and understood the information provided and agree to the terms for submitting and potentially featuring my business.<span class="req" aria-hidden="true"> *</span></span></label>
         </fieldset>
         <div class="step-actions">
-          <button class="btn-back" type="button" data-back>Back</button>
-          <button class="btn-next" type="submit" id="apply-submit">Submit</button>
+          <button class="btn btn--grey" type="button" data-back>Back</button>
+          <button class="btn btn--green" type="submit" id="apply-submit">Submit</button>
         </div>
       </section>
       <p class="form-note" id="apply-note" role="status" aria-live="polite"></p>
     </form>
+
+    <div class="submit-modal" id="submit-modal" hidden>
+      <div class="submit-modal__backdrop" data-close-modal></div>
+      <div class="submit-modal__card" role="dialog" aria-modal="true" aria-labelledby="submit-modal-title" tabindex="-1">
+        <button class="submit-modal__close" type="button" data-close-modal aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="submit-modal__icon" aria-hidden="true">
+          <svg viewBox="0 0 84 112"><rect x="0" y="12" width="84" height="100" rx="12" fill="#2AE173"/><rect x="20" y="0" width="44" height="22" rx="7" fill="#2AE173" stroke="#0F172B" stroke-width="5"/><path d="M24 64l13 13 24-26" stroke="#0F172B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <h2 id="submit-modal-title">Application Submitted</h2>
+        <p class="submit-modal__lead">Application sent! You’re one step closer to being featured!</p>
+        <p class="submit-modal__note">Note: Thank you for submitting your application! Please allow some time for our team to review your details. We’ll get in touch once your application has been reviewed.</p>
+      </div>
+    </div>
+
   </main>
   <footer class="site-footer site-footer--dark">
     <div class="footer__top">
